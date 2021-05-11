@@ -1,0 +1,64 @@
+[appconfig]
+AppName = "ClusterTagEngine"
+InternalServer = "127.0.0.1:9999"
+
+# log config
+[log]
+FileName = "app.log"
+AppId = 1
+AppName = "TagEngine"
+MaxCount = 30
+
+[download]
+DownloadPath = "/Users/zzm/go/awesomeProject/images"
+DownloadSuffix = "jpg"
+PrefixUrl = "https://static.bwemc.com/images/"
+
+#redis config
+[redis]
+Database = 0
+Network = "tcp"
+Address = "127.0.0.1:6379"
+MaxIdle = 3
+MaxActive = 100
+IdelTimeout = 200
+DialReadTimeout = 60
+DialWriteTimeout = 60
+DialConnectTimeout = 60
+
+# database config
+[dbconfig]
+    [dbconfig.database]
+        [dbconfig.database.default]
+        ConnName = "default"
+        ConnId = 1
+        Driver = "mysql"
+        ConnectionString = "root:jingyu0098@tcp(127.0.0.1:3306)/cluster_app"
+        MaxOpenConnections=100
+        MaxIdleConnections=3
+        ConnMaxLifetime = 10
+
+        [dbconfig.database.vod]
+        ConnName = "vod"
+        ConnId = 2
+        Driver = "mysql"
+        ConnectionString = "root:jingyu0098@tcp(127.0.0.1:3306)/cluster_vod"
+        MaxOpenConnections=200
+        MaxIdleConnections=3
+        ConnMaxLifetime = 10
+#rabbitmq config
+[rabbitmq]
+# 连接字符串
+RabbitMQURL="amqp://jingyukxy:Jingyu0098@127.0.0.1:5672"
+# vhost
+VHost="movie"
+# 字符集
+Locale="zh_CN"
+# channel最大连接数
+ChannelMax=32767
+    [rabbitmq.exchanges]
+        [rabbitmq.exchanges.movie]
+        QueueName  = "qq_movie_item"
+        RoutingKey = "qq_movie_item"
+        ExchangeName = "amq.direct"
+        ExchangeType = "direct"
