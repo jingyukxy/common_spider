@@ -10,9 +10,9 @@ AppName = "TagEngine"
 MaxCount = 30
 
 [download]
-DownloadPath = "/Users/zzm/go/awesomeProject/images"
+DownloadPath = "/Users/xxx/go/awesomeProject/images"
 DownloadSuffix = "jpg"
-PrefixUrl = "https://static.bwemc.com/images/"
+PrefixUrl = "https://static.xxx.com/images/"
 
 #redis config
 [redis]
@@ -33,7 +33,7 @@ DialConnectTimeout = 60
         ConnName = "default"
         ConnId = 1
         Driver = "mysql"
-        ConnectionString = "root:jingyu0098@tcp(127.0.0.1:3306)/cluster_app"
+        ConnectionString = "root:123456@tcp(127.0.0.1:3306)/cluster_app"
         MaxOpenConnections=100
         MaxIdleConnections=3
         ConnMaxLifetime = 10
@@ -42,14 +42,14 @@ DialConnectTimeout = 60
         ConnName = "vod"
         ConnId = 2
         Driver = "mysql"
-        ConnectionString = "root:jingyu0098@tcp(127.0.0.1:3306)/cluster_vod"
+        ConnectionString = "root:123456@tcp(127.0.0.1:3306)/cluster_vod"
         MaxOpenConnections=200
         MaxIdleConnections=3
         ConnMaxLifetime = 10
 #rabbitmq config
 [rabbitmq]
 # 连接字符串
-RabbitMQURL="amqp://jingyukxy:Jingyu0098@127.0.0.1:5672"
+RabbitMQURL="amqp://123456:123456@127.0.0.1:5672"
 # vhost
 VHost="movie"
 # 字符集
