@@ -15,11 +15,11 @@ func start() {
 	flag.Parse()
 	bootstrap := server.New()
 	if *etcFile == "" {
-		if *process == "shutdown" {
-			bootstrap.ShutDownServer(*etcFile)
-			return
-		}
 		logrus.Fatal("etc file should not be empty!")
+	}
+	if *process == "shutdown" {
+		bootstrap.ShutDownServer(*etcFile)
+		return
 	}
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	bootstrap.Start(*etcFile)
