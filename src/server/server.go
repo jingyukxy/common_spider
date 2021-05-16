@@ -117,8 +117,13 @@ func (bootstrap *Bootstrap) Start(configFile string) {
 	bootstrap.startInternalServer()
 }
 
-func (bootstrap *Bootstrap) ShutDownServer() {
-	conn, err := net.Dial("tcp", "127.0.0.1:9999")
+func (bootstrap *Bootstrap) ShutDownServer(configFile string) {
+	configManager := config2.GetConfigInstance()
+	err := configManager.Init(configFile)
+	if err != nil {
+		logrus.WithError(err).Fatal("加载日志文件失败，直接停服!")
+	}
+	conn, err := net.Dial("tcp", configManager.AppConfig.InternalServer)
 	defer func() {
 		if conn != nil {
 			conn.Close()

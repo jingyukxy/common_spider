@@ -12,7 +12,7 @@ start() {
 
 stop() {
   echo "stop tag engine........."
-  ${APP_PATH}/bin/${PROJECT} -s shutdown
+  ${APP_PATH}/bin/${PROJECT} -s shutdown -c  ${APP_PATH}/etc/app.toml
 }
 
 if [[ $1 = "start" ]]; then

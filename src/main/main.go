@@ -16,7 +16,7 @@ func start() {
 	bootstrap := server.New()
 	if *etcFile == "" {
 		if *process == "shutdown" {
-			bootstrap.ShutDownServer()
+			bootstrap.ShutDownServer(*etcFile)
 			return
 		}
 		logrus.Fatal("etc file should not be empty!")
