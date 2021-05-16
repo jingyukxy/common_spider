@@ -5,6 +5,7 @@ import (
 	log "awesomeProject/src/logs"
 	"context"
 	"github.com/go-redis/redis/v8"
+	"strings"
 	"time"
 )
 
@@ -18,6 +19,20 @@ type RedisCache struct {
 
 // Redis连接池
 func NewRedisCache(config config.RedisConfig) *RedisCache {
+	if strings.Index(config.Address, ",") != -1 {
+		return &RedisCache{
+			ctx: context.Background(),
+			redisClient: redis.NewFailoverClient(&redis.FailoverOptions{
+				SentinelAddrs: []string{config.Address},
+				DialTimeout:   time.Duration(config.DialConnectTimeout) * time.Second,
+				ReadTimeout:   time.Duration(config.DialReadTimeout) * time.Second,
+				PoolSize:      config.MaxActive,
+				PoolTimeout:   time.Duration(config.IdleTimeout) * time.Second,
+				MinIdleConns:  config.MaxIdle,
+				IdleTimeout:   time.Duration(config.IdleTimeout) * time.Second,
+			}),
+		}
+	}
 	return &RedisCache{
 		ctx: context.Background(),
 		redisClient: redis.NewClient(&redis.Options{

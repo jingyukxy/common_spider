@@ -2,7 +2,7 @@
 /bin
 /images
 /logs
-
+/etc/app.toml
 # local env files
 .env.local
 .env.*.local
